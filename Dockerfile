@@ -5,7 +5,7 @@ RUN mvn clean package -DskipTests
 
 FROM openjdk:21
 WORKDIR /app
-COPY target/SkinsStorage-1.0-SNAPSHOT.jar /app/SkinsStorage.jar
+COPY --from=builder /app/target/SkinsStorage-1.0-SNAPSHOT.jar /app/SkinsStorage.jar
 EXPOSE 8989
 
 CMD ["java", "-jar", "SkinsStorage.jar"]
