@@ -44,6 +44,6 @@ public class Main {
         app.start(Integer.parseInt(URL.split(":")[2]));
 
         System.out.println("Server started at " + URL);
-        System.out.println("Ура авто деплой работает!");
+        System.out.println("Ура авто деплой (не)работает!");
     }
 }
