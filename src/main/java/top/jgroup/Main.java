@@ -9,7 +9,7 @@ import static io.javalin.apibuilder.ApiBuilder.crud;
 
 public class Main {
 
-    public static final String URL = "http://localhost:8989";
+    public static final String URL = "http://45.144.53.244/:8989";
 
     public static void main(String[] args) {
         Javalin app = Javalin.create(config -> {
@@ -44,6 +44,5 @@ public class Main {
         app.start(Integer.parseInt(URL.split(":")[2]));
 
         System.out.println("Server started at " + URL);
-        System.out.println("Ура авто деплой (не)работает!");
     }
 }
