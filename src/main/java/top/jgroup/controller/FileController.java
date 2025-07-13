@@ -147,7 +147,7 @@ public class FileController implements CrudHandler {
             context.status(200).result(new FileInputStream(file));
             String mimeType = Files.probeContentType(file.toPath());
             context.contentType(mimeType != null ? mimeType : "application/octet-stream");
-            context.header("Content-Disposition", "attachment; filename=\"" + file.getName() + "\"");
+            context.header("Content-Disposition", "inline; filename=\"" + file.getName() + "\"");
         } catch (IOException e) {
             context.status(404). json(MessageUtil.createJsonMessage(false, "File not found"));
         }
