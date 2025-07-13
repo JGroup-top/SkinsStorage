@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  skins-storage:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: skins-storage
+    restart: always
+    ports:
+      - "8989:8989"
+    volumes:
+      - skinsstorage_files:/app/files
+
+volumes:
+  skinsstorage_files:
