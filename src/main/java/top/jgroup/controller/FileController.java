@@ -266,13 +266,23 @@ public class FileController implements CrudHandler {
 
     @Nullable
     private static File getImage(@NotNull Context context, @NotNull String filename) {
-        File file = new File(DIR_NAME + "/" + filename);
-        if (!file.exists()) {
-            context.status(404).json(MessageUtil.createJsonMessage("File not found"));
-            return null;
+        File directFile = new File(DIR_NAME + "/" + filename);
+        if (directFile.exists() && directFile.isFile()) {
+            return directFile;
         }
-        return file;
+
+        String[] extensions = {".png", ".jpg", ".jpeg"};
+        for (String ext : extensions) {
+            File f = new File(DIR_NAME + "/" + filename + ext);
+            if (f.exists() && f.isFile()) {
+                return f;
+            }
+        }
+
+        context.status(404).json(MessageUtil.createJsonMessage("File not found"));
+        return null;
     }
+
 
     private boolean isSupportedImageType(String contentType) {
         return contentType != null &&
